@@ -1,0 +1,64 @@
+{
+  "consumer": {
+    "name": "RadioBrowserClient"
+  },
+  "provider": {
+    "name": "RadioBrowser"
+  },
+  "interactions": [
+    {
+      "description": "a request for country stats",
+      "providerState": "Country stats exist",
+      "request": {
+        "method": "get",
+        "path": "/json/stats"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "countries": 212
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request for country stats with integer fields",
+      "providerState": "Country stats exist with integer fields",
+      "request": {
+        "method": "get",
+        "path": "/json/stats"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "supported_version": 1,
+          "stations": 1
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          },
+          "$.body.supported_version": {
+            "match": "type"
+          },
+          "$.body.stations": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
